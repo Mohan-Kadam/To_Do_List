@@ -1,0 +1,9 @@
+{% extends 'App/base.html' %}
+{% block content %}
+    <h3>Are You Sure You Want To Delete</h3>
+    <hr>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        <p><input id="btn-add" type="submit" value="yes" /> <button id="btn-add"><a href="{% url 'task' %}">Cancel</a></button></p>
+    </form>
+{% endblock %}

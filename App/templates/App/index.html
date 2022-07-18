@@ -1,0 +1,34 @@
+{% extends 'App/base.html' %}
+{% load static %}
+
+
+    {% block content %}
+        <header>
+
+            <h1 >To-Do-List</h1>
+            <button id="btn-new_task"><a href="{% url 'new_task' %}">Add New Task</a></button>
+        </header>
+        <hr>
+        {% for item in key %}
+          <article>
+
+              <h3> {{ item.Task }}</h3>
+              <form method="POST" class="post-form">
+               {% csrf_token %}
+                  <button id="btn-add"><a href="{% url 'del_task' pk=item.pk %}">Delete</a></button>
+                  {% if item.Status == False %}
+
+                    <button id="btn-add"><a href="{% url 'status' pk=item.pk %}">Incomplete</a></button>
+                  {% else %}
+
+                    <button id="btn-complete"><a href="{% url 'status' pk=item.pk %}">Complete</a></button>
+                  {% endif %}
+
+               </form>
+
+          </article>
+
+        {% endfor %}
+
+
+    {% endblock %}
